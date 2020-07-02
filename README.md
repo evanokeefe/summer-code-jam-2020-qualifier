@@ -99,7 +99,7 @@ _The requirements listed in this section only apply to the `Article` class._
     {'the': 3, 'he': 2, 'at': 2}
     ```
    - Output the words in lowercase in the dictionary.
-   - Every non-alphabet character counts as a space or word break. For example, `"It's"` counts as two "words": `"it"` and `"s"`.
+   - Every non-alphabet (ASCII only) character counts as a space or word break. For example, `"It's"` counts as two "words": `"it"` and `"s"`.
 
 ### Intermediate Requirements
 
@@ -186,4 +186,4 @@ python run_tests.py
 
 **Note:** You may have to replace `python` with the command you use to run Python from the command line. If you're using Windows and `python` doesn't work, try `py` instead.
 
-The test suite has been tested with Python 3.7 and Python 3.8.
+The test suite requires **at least Python 3.7**. It has also been confirmed to work with 3.8.
