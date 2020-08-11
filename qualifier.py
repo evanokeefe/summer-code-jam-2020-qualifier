@@ -16,6 +16,7 @@ Important notes for submission:
 import datetime
 import typing
 import re
+import itertools
 from collections import Counter
 
 
@@ -28,15 +29,14 @@ class ArticleField:
 
 class Article:
     """The `Article` class you need to write for the qualifier."""
-    id = 0
+    newid = itertools.count()
     def __init__(self, title: str, author: str, publication_date: datetime.datetime, content: str):
+      self.id = next(Article.newid)
       self.title = title
       self.author = author
       self.publication_date = publication_date
       self.content = content
       self.last_edited = None
-      self.id = Article.id
-      Article.id += 1
 
     def __repr__(self):
       return f'<Article title={repr(self.title)} author={repr(self.author)} publication_date={repr(self.publication_date.isoformat())}>'
@@ -54,14 +54,10 @@ class Article:
       word_list = re.findall(r'\w+', self.content.lower())
       return dict(Counter(word_list).most_common(n_words))
 
-      
-fairytale = Article(
-  title="The emperor's new clothes",
-  author="Hans Christian Andersen",
-  content="'But he has nothing at all on!' at last cried out all the people. The Emperor was vexed, for he knew that the people were right.",
-  publication_date=datetime.datetime(1837, 4, 7, 12, 15, 0))
+article_one = Article(title="PEP-8", author="Guide van Rossum", content="Use snake_case", publication_date=datetime.datetime(2001, 7, 5))
+print(article_one.id)
 
-print(fairytale.last_edited)
-fairytale.content = "I'm making a change to the content of this article"
-print(fairytale.content)
-
+article_two = Article(title="Fluent Python", author="Luciano Ramalho", content="Effective Programming", publication_date=datetime.datetime(2015, 8, 20))
+print(article_two.id)
+article_two.id = 6
+print(article_two.id)
